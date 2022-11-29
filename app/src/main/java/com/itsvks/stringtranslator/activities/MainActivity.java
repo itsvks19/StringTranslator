@@ -8,9 +8,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.itsvks.stringtranslator.R;
 import com.itsvks.stringtranslator.adapters.MainPagerAdapter;
 import com.itsvks.stringtranslator.databinding.ActivityMainBinding;
-import com.itsvks.stringtranslator.ui.dashboard.DashboardFragment;
-import com.itsvks.stringtranslator.ui.home.HomeFragment;
-import com.itsvks.stringtranslator.ui.notifications.NotificationsFragment;
+import com.itsvks.stringtranslator.fragments.HomeFragment;
+import com.itsvks.stringtranslator.fragments.MoreFragment;
+import com.itsvks.stringtranslator.fragments.SettingsFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -32,8 +32,8 @@ public class MainActivity extends BaseActivity {
         adapter = new MainPagerAdapter(getSupportFragmentManager(), getLifecycle());
 
         adapter.addFragment(new HomeFragment());
-        adapter.addFragment(new DashboardFragment());
-        adapter.addFragment(new NotificationsFragment());
+        adapter.addFragment(new SettingsFragment());
+        adapter.addFragment(new MoreFragment());
 
         pager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         pager.setAdapter(adapter);
@@ -50,13 +50,11 @@ public class MainActivity extends BaseActivity {
                                 break;
                             case 1:
                                 navView.getMenu()
-                                        .findItem(R.id.navigation_dashboard)
+                                        .findItem(R.id.navigation_settings)
                                         .setChecked(true);
                                 break;
                             case 2:
-                                navView.getMenu()
-                                        .findItem(R.id.navigation_notifications)
-                                        .setChecked(true);
+                                navView.getMenu().findItem(R.id.navigation_more).setChecked(true);
                                 break;
                         }
                     }
@@ -68,10 +66,10 @@ public class MainActivity extends BaseActivity {
                         case R.id.navigation_home:
                             pager.setCurrentItem(0);
                             break;
-                        case R.id.navigation_dashboard:
+                        case R.id.navigation_settings:
                             pager.setCurrentItem(1);
                             break;
-                        case R.id.navigation_notifications:
+                        case R.id.navigation_more:
                             pager.setCurrentItem(2);
                             break;
                     }
